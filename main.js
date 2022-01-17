@@ -1,29 +1,35 @@
-let products = [
-    {
-        title:"Woof Woof Leash",
-        category:"Dog Leash",
-        price:"R90",
-        img:"https://i.postimg.cc/tT1xZWxZ/5295958.jpg",
-    },
-    {
-        title:"Woof Woof Jacket",
-        category:"Jacket",
-        price:"R200",
-        img:"https://i.postimg.cc/Ghbm6vmF/30b1e1c2b353dc78d33f6a374633829d.jpg",
-    },
-    {
-        title:"Woof Woof Treats",
-        category:"Treats",
-        price:"R60",
-        img:"https://i.postimg.cc/xj52Jh9m/DSC04629.jpg",
-    },
-    {
-        title:"Woof Woof Cage",
-        category:"Cage",
-        price:"R500",
-        img:"https://i.postimg.cc/CKbyF6vz/Reviewed-com-Rv-EW-24856-2-crate.webp",
-    },
-]
+
+let products = JSON.parse(localStorage.getItem("products"))
+? JSON.parse(localStorage.getItem("products"))
+: [{
+  title:"Woof Woof Leash",
+  category:"Leashes",
+  price:"90",
+  img:"https://i.postimg.cc/tT1xZWxZ/5295958.jpg",
+},
+{
+  title:"Woof Woof Jacket",
+  category:"Jackets",
+  price:"200",
+  img:"https://i.postimg.cc/Ghbm6vmF/30b1e1c2b353dc78d33f6a374633829d.jpg",
+},
+{
+  title:"Woof Woof Treats",
+  category:"Treats",
+  price:"60",
+  img:"https://i.postimg.cc/xj52Jh9m/DSC04629.jpg",
+},
+{
+  title:"Woof Woof Cage",
+  category:"Cages",
+  price:"500",
+  img:"https://i.postimg.cc/CKbyF6vz/Reviewed-com-Rv-EW-24856-2-crate.webp",
+},];
+
+let cart= JSON.parse(localStorage.getItem("cart"))
+? JSON.parse(localStorage.getItem("cart"))
+: [];
+
 
 // READ
 function readProducts(products) {
@@ -34,7 +40,7 @@ function readProducts(products) {
         <img src="${product.img}" class="card-img-top" alt="${product.title}">
         <div class="card-body">
           <h5 class="card-title">${product.title}</h5>
-          <p class="card-text">${product.price}</p>
+          <p class="card-text">R${product.price}</p>
           <div class="d-flex mb-3">
             <input type="number" class="form-control" value=1 min=1 id="addToCart${position}">
             <button type="button" class="btn btn-secondary ms-3" onclick="addToCart(${position})"><i class="fas fa-cart-plus"></i></button>
@@ -109,7 +115,7 @@ function readProducts(products) {
                           type="text"
                           name="editPrice${position}"
                           id="editPrice${position}"
-                          value="${product.price}"
+                          value="R${product.price}"
                         />
                       </div>
                       <div class="mb-3">
@@ -285,25 +291,25 @@ function sortPrice() {
   readProducts(sortedProducts);
 }
 console.log(products)
- for(let item of products) {
-    document.querySelector('#products').innerHTML += `
-<div class="card" style="width: 24rem, height: 24rem;">
-    <p>${item.title}</p>
+//  for(let item of products) {
+//     document.querySelector('#products').innerHTML += `
+// <div class="card" style="width: 24rem, height: 24rem;">
+//     <p>${item.title}</p>
     
-  <div class="card-body">
-  <img src ="${item.img}">
-  <p>${item.price}</p>
-  <p>${item.category}</p>
-  <div>
-    <a href="#" class="btn btn-primary">Edit</a>
-    <a href="#" class="btn btn-primary">Remove</a>
-  </div>
+//   <div class="card-body">
+//   <img src ="${item.img}">
+//   <p>${item.price}</p>
+//   <p>${item.category}</p>
+//   <div>
+//     <a href="#" class="btn btn-primary">Edit</a>
+//     <a href="#" class="btn btn-primary">Remove</a>
+//   </div>
   
-  </div>
-</div>
-    `;
+//   </div>
+// </div>
+//     `;
 
-}
+// }
 
 
 
